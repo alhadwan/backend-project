@@ -1,21 +1,24 @@
 <%- include('partials/header.ejs'); -%>
-
+  <!-- title -->
   <div class="box" id="heading">
     <h1>
       <%= listTitle %>
     </h1>
   </div>
+  <!-- todolist body -->
   <div class="box">
+    <!-- for loop -> for each item list -->
     <% for(let item of listItems){%>
       <div class="item">
+        <!-- for checkbox input to deleted item list -->
         <form action="/delete" method="post">
           <input type="checkbox" onchange="this.form.submit()" name="deleteItemId" value="<%= item.id %>">
         </form>
-
+        <!-- name of the items in the list -->
         <p id="title<%=item.id%>">
           <%= item.title %>
         </p>
-
+        <!-- edit button -->
         <form class="edit" action="/edit" method="post">
           <input type="hidden" name="updatedItemId" value="<%= item.id %>">
           <input id="input<%=item.id%>" type="text" name="updatedItemTitle" value="<%= item.title %>" autocomplete="off"
